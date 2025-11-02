@@ -1,1 +1,24 @@
 // completar
+import packs.*
+describe "test packs" {
+    const cordinador = new Cordinador(viajesRealizados = 4, estaMotivado = true, aniosExperiencia = 4, rol = guia)
+
+    const beneficio1 = new BeneficioEspecial(tipo = "traslados privados", costo = 100, estaVigente = true)
+    const beneficio2 = new BeneficioEspecial(tipo = "Acceso a salas vip", costo = 100, estaVigente = true)
+
+    const packNacional1 = new PackNacional(duracion = 4, precio = 4, cordinador = cordinador, provincia = "Mendoza", actividades = "caminata")
+    const packNacional2 = new PackNacional(duracion = 4, precio = 4, cordinador = cordinador, provincia = "Mendoza", actividades = "caminata", beneficiosEspeciales = [beneficio1, beneficio2] )
+    const packInternacional1= new PackInternacional(duracion = 4, precio = 10, cordinador = cordinador, pais = "Chile", escalas = 2, esDeInteres = true)
+
+    test "Un pack nacional sin beneficios vigentes devuelve el mismo precio base." {
+        assert.equals(packNacional1.valorFinal(), packNacional1.precio())
+    }
+
+    test "Un pack nacional con 2 beneficios vigentes suma correctamente sus costos al precio base." {
+        assert.equals(packNacional2.valorFinal(), 204)
+    }
+
+    test "Un pack internacional sin beneficios vigentes calcula correctamente el total con el 20% de recargo." {
+        assert.equals(packInternacional1.valorFinal(), 12)
+    }
+}

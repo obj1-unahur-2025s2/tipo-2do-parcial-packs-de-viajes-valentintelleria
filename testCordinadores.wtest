@@ -1,0 +1,19 @@
+import packs.*
+
+describe "test cordinadores" {
+    const guia1 = new Cordinador(viajesRealizados = 21, estaMotivado = true, aniosExperiencia = 0, rol = guia)
+    const asistenteLogistico1 = new Cordinador(viajesRealizados = 21, estaMotivado = true, aniosExperiencia = 2, rol = asistenteLogistico)
+    const acompaniante1 = new Cordinador(viajesRealizados = 21, estaMotivado = true, aniosExperiencia = 2, rol = acompaniante)
+
+    test "Un guía motivado con 21 viajes realizados es considerado altamente calificado." {
+        assert.that(guia1.esAltamenteCalificado())
+    }
+
+    test "Un asistente logístico con menos de 3 años de experiencia no es calificado, aunque tenga muchos viajes." {
+        assert.notThat(asistenteLogistico1.esAltamenteCalificado())
+    }
+
+    test "Un acompañante con cualquier cantidad de viajes es siempre calificado si supera los 20." {
+        assert.that(acompaniante1.esAltamenteCalificado())
+    }
+}
